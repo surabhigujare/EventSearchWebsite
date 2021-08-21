@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Ticket Master App</title>
+    <link href="static/css/appstyling.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:400,400i" rel="stylesheet">
+</head>
+<body>
+
+<div class = "formStyle">
+    <div class = "formTitle"><I><h1> Events Search </h></I></div>
+    <hr class = 'form-line'> </hr>
+    <form method = "get" id = "searchForm" onsubmit = "searchFormButtonClicked(); return false;" class = 'formElements' autocomplete = 'off'>
+            <label class = 'fElement'><B> Keyword </B> </label> <input type = "text" name = "keyword" id = "keyword" class = 'fElement' required> <br>
+            <label class = 'fElement'><B> Category </B></label>
+            <select name = "category" id = "category" class = 'fElement'>
+                <option value="default" selected>Default</option>
+                <option value="music">Music</option>
+                <option value="sports">Sports</option>
+                <option value="arts">Arts &amp; Theatre</option>
+                <option value="film">Film</option>
+                <option value="miscellaneous">Miscellaneous</option>
+            </select> <br>
+
+            <label class = 'fElement'><B> Distance (miles) </B></label> 
+            <input type = "number"  min="0" name="distance" placeholder = "10" id="distance" class = 'fElement'> 
+            <label class = 'fElement'><B> from </B></label>
+
+            <input type = "radio" name="location_button" value="here" onclick="hereRadioButtonClicked();" id="hereButton" class = 'fElement'> 
+            <label class = 'fElement'> Here </label><br>
+
+            <input type = "radio" name="location_button" value="notHere" onclick="locationRadioButtonClicked();" id="locationButton" class = 'locationStyle'> 
+            <input type = "text" name="location_button" placeholder = "location" id = "locationText" class = 'fElement' required >
+
+            <br> <br>
+
+            <input type="submit" value = "Search" id="submitButton" class = 'fElement' style = 'margin-left: 10%;'>
+            <input type="button" value = "Clear" id="clearButton" onclick = "clearFormButtonClicked();" class = 'fElement'>
+      </form>
+</div>
+
+<div id = 'noRecords'></div>
+<div id = 'horizontalLine'> </div>
+<div class = "tableStyle" id = 'showData'></div>
+<div class = "eventDetailsStyle" id = 'eventDetails'> </div>
+<script src="static/js/index.js"></script>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+</body>
+</html>
