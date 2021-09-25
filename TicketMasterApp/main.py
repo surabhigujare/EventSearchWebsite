@@ -4,10 +4,6 @@ import requests
 from werkzeug.exceptions import abort
 from geolib import geohash
 
-# bpohdMVIE4tkLwi5EHt4ZkWwziN4L43l -> TicketMaster API key
-# AIzaSyDGESdPNGuw1l8Lc6xHq-qdAazeRgcmejM -> Google API Key
-# b42e020c1b42a3 -> IP info Key
-
 app = Flask(__name__)
 
 @app.route("/")
@@ -42,7 +38,7 @@ def getEventsList():
     return event_response
         
 def getUserLocationLatLng(address):
-    url = "https://maps.googleapis.com/maps/api/geocode/json?address="+address+"&key=AIzaSyDGESdPNGuw1l8Lc6xHq-qdAazeRgcmejM"
+    url = "https://maps.googleapis.com/maps/api/geocode/json?address="+address+"&key=GoogleApiKey"
     data = requests.get(url)
 
     if data.status_code not in range(200, 299):
@@ -72,7 +68,6 @@ def getSegmentid(category_type):
     return segementId
 
 def callTicketMasterApi(geohashValue, distance, segment_id, keyword):
-    api_key = "bpohdMVIE4tkLwi5EHt4ZkWwziN4L43l"
     unit = "miles"
     url = "https://app.ticketmaster.com/discovery/v2/events.json?apikey="+api_key+"&keyword="+keyword+"&segmentId="+segment_id+"&radius="+distance+"&unit="+unit+"&geoPoint="+geohashValue
     data = requests.get(url)
@@ -150,7 +145,6 @@ def parseTicketMasterApiResponse(events_data):
 @app.route('/getEventDetails')
 def getEventDetails():
     event_id = request.args.get('eventId')
-    api_key = "bpohdMVIE4tkLwi5EHt4ZkWwziN4L43l"
     url = 'https://app.ticketmaster.com/discovery/v2/events/'+event_id+'?apikey='+api_key
     data = requests.get(url)
 
